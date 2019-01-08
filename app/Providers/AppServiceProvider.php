@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Category;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         $this->helpers();
+        $this->viewShare();
     }
 
     /**
@@ -26,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
         foreach (glob(__DIR__.'/../Helpers/*.php') as $file) {
             require_once $file;
         }
+    }
+    public function viewShare(){
+        View::share('categories', Category::withCount('posts')->get());
     }
 
     /**

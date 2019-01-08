@@ -73,12 +73,10 @@
         </nav>
 
         <main class="container mt-5">
-            <div class="main-content">
+            <div class="main-content-admin">
                 @yield('content')
             </div>
-            <div class="siderbar">
-                @include('shared.siderbar')
-            </div>
+
         </main>
     </div>
 </body>

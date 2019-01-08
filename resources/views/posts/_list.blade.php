@@ -1,5 +1,5 @@
 
-<div class="card-columns">
+<div class="card-columns mt-5">
     @each('posts/_show', $posts, 'post', 'posts/_empty')
 </div>
 

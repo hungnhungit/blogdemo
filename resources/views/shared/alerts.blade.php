@@ -7,7 +7,7 @@
 @if (Session::has('errors'))
     @component('components.alerts.dismissible', ['type' => 'danger'])
         @if ($errors->count() > 1)
-            {{ trans_choice('validation.errors', $errors->count()) }}
+            {{-- {{ trans_choice('validation.errors', $errors->count()) }} --}}
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>

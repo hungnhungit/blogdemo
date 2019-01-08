@@ -15,6 +15,7 @@ class Post extends Model
         'content',
         'posted_at',
         'slug',
+        'category_id'
     ];
 
     protected $dates = [
@@ -25,6 +26,13 @@ class Post extends Model
         if ($search) {
             return $query->where('title', 'LIKE', "%{$search}%");
         }
+    }
+
+    public function scopeQueryBuilderPost(Builder $query){
+        return $query->with(['author','category'])
+                     ->withCount('comments','tags')
+                     ->latest()
+                     ->paginate(9);
     }
 
     public function author(): BelongsTo
@@ -40,6 +48,10 @@ class Post extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function commentsAuthor(){
+        return $this->comments()->with('author');
     }
 
     public function tags(): belongsToMany

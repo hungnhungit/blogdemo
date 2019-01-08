@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Post;
 use App\Models\Comment;
-use App\Models\Tag;
+use App\Models\Category;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -28,8 +28,10 @@ class DatabaseSeeder extends Seeder
 
         //Create Tag
         foreach ($tags as $k => $v) {
-            Tag::firstOrNew([
-                'name' => $v
+            Category::firstOrNew([
+                'order' => $k + 1,
+                'name' => strtoupper($v),
+                'slug' => $v,
             ])->save();
         }
 
