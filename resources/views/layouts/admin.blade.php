@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Blog Demo') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -73,11 +71,15 @@
         </nav>
 
         <main class="container mt-5">
+            @include('shared/alerts')
             <div class="main-content-admin">
                 @yield('content')
             </div>
 
         </main>
     </div>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

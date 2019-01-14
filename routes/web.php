@@ -13,9 +13,12 @@
 
 
 
-Route::group(['prefix' => 'admin','middleware'=>'auth','namespace'=>'Admin','as'=>'admin.'], function() {
+
+
+Route::group(['prefix' => 'admin','middleware'=>'roles:Admin|Member','namespace'=>'Admin','as'=>'admin.'], function() {
 	Route::get('dasboash','AdminController@index');
 	Route::resource('posts', 'PostController');
+	Route::resource('categories', 'CategoryController');
 });
 
 
@@ -28,3 +31,9 @@ Route::get('categories/{slug}','CategoryController@show')->name('categories.show
 Route::post('comment/store','CommentController@store')->name('comment.store');
 Auth::routes();
 
+
+Route::group(['middleware'=>['roles:Admin']],function(){
+	Route::get('testmiddleware', function() {
+	    return "pass";
+	})->middleware('permissions:post-create');
+});

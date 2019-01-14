@@ -14,26 +14,5 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-         $tags = ['php','c++','c#','ruby'];
-
-
-        // factory(Post::class, 20)
-        //     ->create()
-        //     ->each(function ($post) {
-        //         factory(Comment::class, 5)
-        //             ->create([
-        //                 'post_id' => $post->id
-        //             ]);
-        //     });
-
-        //Create Tag
-        foreach ($tags as $k => $v) {
-            Category::firstOrNew([
-                'order' => $k + 1,
-                'name' => strtoupper($v),
-                'slug' => $v,
-            ])->save();
-        }
-
     }
 }

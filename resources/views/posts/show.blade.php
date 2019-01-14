@@ -8,7 +8,7 @@
 	@foreach($post->commentsAuthor as $comment)
 		<p>{{ $comment->content }}</p>
 		<small>{{ $comment->author->fullname }}</small>
-		<small>{{ humanize_date($comment->posted_at) }}</small>
+		<small>{{ $comment->posted_at->diffForHumans() }}</small>
 	@endforeach
 	
 	<h3>Tag :

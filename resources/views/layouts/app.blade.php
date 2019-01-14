@@ -71,7 +71,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="container mt-5">
             <div class="main-content">
                 @yield('content')
